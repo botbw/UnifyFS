@@ -41,8 +41,15 @@ RUN . /opt/spack/share/spack/setup-env.sh && \
     spath_install=$(spack location -i spath) && \
     ./autogen.sh && \
     ./configure --prefix=/opt/unifyfs/install \
-    CPPFLAGS="-I${gotcha_install}/include -I{spath_install}/include" LDFLAGS="-L${gotcha_install}/lib64 -L${spath_install}/lib64" && \
-    make && make install
+    CPPFLAGS="-I${gotcha_install}/include -I${spath_install}/include" LDFLAGS="-L${gotcha_install}/lib64 -L${spath_install}/lib64" && \
+    make -j$(nproc) && make install
+
+RUN gotcha_install=$(spack location -i gotcha) && \
+    mercury_install=$(spack location -i mercury) && \
+    spath_install=$(spack location -i spath) && \
+    argobots_install=$(spack location -i argobots) && \
+    margo_install=$(spack location -i mochi-margo) && \
+    echo "export LD_LIBRARY_PATH=${gotcha_install}/lib:${mercury_install}/lib:}${spath_install}/lib:${argobots_install}/lib:${margo_install}/lib:${LD_LIBRARY_PATH}" >> ${HOME}/.bashrc
 
 WORKDIR /work
 CMD ["bash"]
