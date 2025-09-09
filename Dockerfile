@@ -49,7 +49,7 @@ RUN gotcha_install=$(spack location -i gotcha) && \
     spath_install=$(spack location -i spath) && \
     argobots_install=$(spack location -i argobots) && \
     margo_install=$(spack location -i mochi-margo) && \
-    echo "export LD_LIBRARY_PATH=${gotcha_install}/lib:${mercury_install}/lib:}${spath_install}/lib:${argobots_install}/lib:${margo_install}/lib:${LD_LIBRARY_PATH}" >> ${HOME}/.bashrc
+    echo "export LD_LIBRARY_PATH=${gotcha_install}/lib:${mercury_install}/lib:${spath_install}/lib:${argobots_install}/lib:${margo_install}/lib:${LD_LIBRARY_PATH}" >> ${HOME}/.bashrc
 
 WORKDIR /work
 CMD ["bash"]
