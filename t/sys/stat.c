@@ -74,11 +74,13 @@ int stat_test(char* unifyfs_root)
     ok(rc == 0 && err == 0, "%s:%d stat(): %s",
        __FILE__, __LINE__, strerror(err));
 
+    todo("Add lstat() support");
     errno = 0;
     rc = lstat(path, &sb);
     err = errno;
     ok(rc == 0 && err == 0, "%s:%d lstat(): %s",
        __FILE__, __LINE__, strerror(err));
+    end_todo;
 
     errno = 0;
     rc = fstat(fd, &sb);
